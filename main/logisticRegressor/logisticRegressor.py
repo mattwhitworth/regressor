@@ -49,7 +49,7 @@ class LogisticRegressor(ar.AbstractRegressor):
         return self.make_multiclass_prediction(fileName)[:, 1:-1]
 
 
-def main():
+def test():
     lr = LogisticRegressor('../inputData/logisticDataSet1')
     lr.perform_multiclass_classification_descent()
 
@@ -58,4 +58,4 @@ def main():
 
     lr.plot_prediction('../inputData/predictionData1')
 
-main()
+#test()

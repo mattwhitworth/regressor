@@ -17,16 +17,16 @@ class LinearRegressor(ar.AbstractRegressor):
         return self.make_prediction(fileName)
 
 
-def main():
+def test():
     lr = LinearRegressor('../inputData/dataSet1')
     lr.perform_gradient_descent()
     lr.plot_prediction('../inputData/predictionData1')
 
 
-def main_multiple():
+def test_multiple():
     d = LinearRegressor('../inputData/dataSet2')
     d.perform_gradient_descent()
     print(d.make_prediction('../inputData/predictionData2'))
 
-    # main_multiple()
-    # main()
+#test_multiple()
+#test()
