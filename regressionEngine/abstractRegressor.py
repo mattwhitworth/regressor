@@ -1,8 +1,4 @@
-import sys
-import random
 import numpy as np
-import pyqtgraph as pg
-from PyQt5 import QtGui
 
 
 class AbstractRegressor:
@@ -92,19 +88,12 @@ class AbstractRegressor:
         normalizedPredictionData = self.normalize_data(predictionData)
         return self.calculate_hypothesis(normalizedPredictionData)
 
-    def plot_scatter_data(self, xValues, yValues, symbolList=['o', '+', 't', 'd', 's']):
-        app = QtGui.QApplication(sys.argv)
-        plotWidget = pg.plot(title="Hypothesis")
-        for xVals, yVals, symbol in zip(xValues, yValues, symbolList):
-            randomColor = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-            plotWidget.scatterPlot(xVals[:, 0], yVals[:, 0], symbol=symbol, brush=randomColor, pen=randomColor)
-        sys.exit(app.exec_())
-
-    def plot_prediction(self, fileName):
+    def get_plot_x(self, fileName):
         xValues = [self.inputFeatures[:, 1:]]
-        yValues = [self.inputYs]
-
         xValues.append(self.load_input_values(fileName)[:, 1:])
-        yValues.append(self.predict_for_plot(fileName))
+        return xValues
 
-        self.plot_scatter_data(xValues, yValues)
+    def get_plot_y(self, fileName):
+        yValues = [self.inputYs]
+        yValues.append(self.predict_for_plot(fileName))
+        return yValues

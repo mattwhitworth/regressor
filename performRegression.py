@@ -1,5 +1,6 @@
 import argparse
 from regressionEngine import regressorFactory as rf
+from plotter import plotter as plot
 
 
 # test logistic
@@ -17,7 +18,8 @@ def perform_regression(args):
     print(regressor.predict(args.predictionFile))
 
     if args.plot:
-        regressor.plot_prediction(args.predictionFile)
+        plotter = plot.Plotter()
+        plotter.plot_scatter_data(regressor.get_plot_x(args.predictionFile), regressor.get_plot_y(args.predictionFile))
 
 
 def parse_arguments():
